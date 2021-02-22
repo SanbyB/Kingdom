@@ -2,6 +2,7 @@ import pygame
 import numpy as np
 from network import Network
 import graphics as gr
+from troops import Warrior
 
 screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
 
@@ -51,11 +52,16 @@ def main():
                         if troop.selected:
                             troop.targ(np.array(mouse_pos) - np.array(cam_pos),
                                        p1.troops + p2.troops + p1.buildings + p2.buildings)
+        try:
+            p1.update(p2.troops)
+            p1.draw_all(cam_pos, screen)
+            p2.draw_all(cam_pos, screen)
+            p1.update_window(screen)
 
-        p1.update(p2.troops)
-        p1.draw_all(cam_pos, screen)
-        p2.draw_all(cam_pos, screen)
-        p1.update_window(screen)
+        except:
+            pass
+
+
 
         pygame.display.update()
 
