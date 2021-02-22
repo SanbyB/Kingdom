@@ -32,7 +32,7 @@ def theaded_client(conn, player):
     reply = ''
     while True:
         try:
-            data = pickle.loads(conn.recv(2048))
+            data = pickle.loads(conn.recv(2048 * 4))
             players[player] = data
 
             if not data:
@@ -43,8 +43,6 @@ def theaded_client(conn, player):
                     reply = players[0]
                 else:
                     reply = players[1]
-                print('recived: ', reply)
-                print('sending: ', reply)
 
             conn.sendall(pickle.dumps(reply))
 
