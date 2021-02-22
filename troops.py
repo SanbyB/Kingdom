@@ -19,6 +19,7 @@ class Troop:
         self.selected = False
         self.image_size = gr.img_size(name)
         self.x_hit, self.y_hit = self.image_size
+        self.tag = None
 
     def select(self, click):  # selects a troop that is left clicked
         if self.x < click[0] < self.x + self.image_size[0] and self.y < click[1] < self.y + self.image_size[1]:
@@ -93,20 +94,13 @@ class Troop:
         if self.y < -280:
             self.y = -278
 
-    def attack(self):
-        if self.target_ob is not None and self.team != self.target_ob.team:
-            if abs(self.x - self.target_ob.x) < (
-                    self.x_hit + self.target_ob.x_hit) / 2 + self.attack_range + 5 and abs(
-                self.y - self.target_ob.y) < (
-                    self.y_hit + self.target_ob.y_hit) / 2 + self.attack_range + 5:
-                self.target_ob.hp -= self.damage / self.attack_speed
-
 
 class Warrior(Troop):
     def __init__(self, team, x, y):
-        super().__init__(team, 'Warrior', (x, y), 50, 5, 10, 10, 5, (10, 10, 0, 0))
+        super().__init__(team, 'Warrior', (x, y), 50, 5, 10, 10, 14, (1, 1, 0, 0))
 
 
 class Archer(Troop):
     def __init__(self, team, x, y):
-        super().__init__(team, 'Archer', (x, y), 50, 4, 300, 10, 5, (20, 20, 0, 0))
+        super().__init__(team, 'Archer', (x, y), 50, 4, 300, 10, 14, (2, 2, 0, 0))
+
