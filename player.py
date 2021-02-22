@@ -12,6 +12,8 @@ class Player:
         self.resources = resources
         self.buttons = buttons
 
+        self.tag_build()
+
     def buy(self, item):
         if all(np.greater_equal(self.resources, item.cost)):
             for index, res in enumerate(self.resources):
@@ -21,6 +23,17 @@ class Player:
                 self.troops.append(item)  # this item is the troop that is being added
             elif isinstance(item, Building):
                 item.level += 1  # this item is the building that is being upgraded
+
+    def attack(self, enmy_troops):
+        for troop in enmy_troops:
+            if troop.target_ob is not None:
+                for ob in self.troops + self.buildings:
+                    if troop.target_ob.tag == ob.tag:
+                        if abs(ob.x - troop.x) < (
+                                ob.x_hit + troop.x_hit) / 2 + troop.attack_range + 5 and abs(
+                            ob.y - troop.y) < (
+                                ob.y_hit + troop.y_hit) / 2 + troop.attack_range + 5:
+                            ob.hp -= troop.damage / troop.attack_speed
 
     def death(self):
         for item in self.troops:
@@ -43,8 +56,9 @@ class Player:
             troop.move()
             troop.collision(self.troops)
             troop.collision(enmy_trps)
-            troop.attack()
 
+        self.tag_troop()
+        self.attack(enmy_trps)
         self.death()
 
     def update_window(self, screen):
@@ -91,11 +105,20 @@ class Player:
         for building in self.buildings:
             building.select(pos)
 
+    def tag_build(self):
+        for n, build in enumerate(self.buildings):
+            build.tag = n
+
+    def tag_troop(self):
+        for n, troop in enumerate(self.troops):
+            troop.tag = n
+
 
 players = [Player(1, [],
                   [Castle(1, (100, 0))] + [Lumbermill(1, tree) for tree in gr.tree_positionsN] + [Mine(1, rock)
-                                                                                                        for rock in
-                                                                                                        gr.rock_positionsN],
+                                                                                                  for rock in
+                                                                                                  gr.rock_positionsN],
                   [0, 100, 0, 0], {}), Player(2, [], [Castle(2, (2600, 1600))] + [Lumbermill(2, tree) for tree in
-                                                                                     gr.tree_positionsS] + [
+                                                                                  gr.tree_positionsS] + [
                                                   Mine(2, rock) for rock in gr.rock_positionsS], [0, 100, 0, 0], {})]
+
