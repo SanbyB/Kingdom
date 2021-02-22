@@ -72,7 +72,7 @@ def cam_move(event, move):
     cam_right_move, cam_up_move = 0, 0
 
     if move:
-        m = 40
+        m = 80
     else:
         m = 0
     if event.key == pygame.K_a:
