@@ -47,7 +47,7 @@ class Button:
 
 class Castle(Building):
     def __init__(self, team, pos):
-        super().__init__(team, 'Castle', pos, 1, 2, 20, 10, (0, 0, 0, 0))
+        super().__init__(team, 'Castle', pos, 500, 2, 20, 10, (0, 0, 0, 0))
 
     def spawn(self):
         x, y = 100, 0
@@ -66,7 +66,7 @@ class Castle(Building):
 
 class Lumbermill(Building):
     def __init__(self, team, pos):
-        super().__init__(team, 'LumberMill', pos, 10, 0, 0, 1, (0, 5, 0, 0))
+        super().__init__(team, 'LumberMill', pos, 100, 0, 0, 1, (0, 5, 0, 0))
 
     def buy_upgrade(self, player):
         self.add_button(player, self, (660, 370), '1')
@@ -77,7 +77,7 @@ class Lumbermill(Building):
 
 class Mine(Building):
     def __init__(self, team, pos):
-        super().__init__(team, 'Mine', pos, 1000, 0, 0, 1, (5, 0, 0, 0))
+        super().__init__(team, 'Mine', pos, 100, 0, 0, 1, (5, 0, 0, 0))
 
     def buy_upgrade(self, player):
         self.add_button(player, self, (660, 370), '1')
