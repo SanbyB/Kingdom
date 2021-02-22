@@ -17,6 +17,7 @@ class Building:
         self.selected = False
         self.image_size = gr.img_size(name)
         self.x_hit, self.y_hit = self.image_size
+        self.tag = None
 
     def select(self, click):
         if self.x < click[0] < self.x_hit + self.x and self.y < click[1] < self.y_hit + self.y:
@@ -65,7 +66,7 @@ class Castle(Building):
 
 class Lumbermill(Building):
     def __init__(self, team, pos):
-        super().__init__(team, 'LumberMill', pos, 10, 0, 0, 1, (0, 10, 0, 0))
+        super().__init__(team, 'LumberMill', pos, 10, 0, 0, 1, (0, 5, 0, 0))
 
     def buy_upgrade(self, player):
         self.add_button(player, self, (660, 370), '1')
@@ -76,7 +77,7 @@ class Lumbermill(Building):
 
 class Mine(Building):
     def __init__(self, team, pos):
-        super().__init__(team, 'Mine', pos, 1000, 0, 0, 1, (10, 10, 0, 0))
+        super().__init__(team, 'Mine', pos, 1000, 0, 0, 1, (5, 0, 0, 0))
 
     def buy_upgrade(self, player):
         self.add_button(player, self, (660, 370), '1')
@@ -87,5 +88,7 @@ class Mine(Building):
     def add_iron(self, player):
         if self.level > 2:
             player.resources[2] += (self.level - 1) * 0.01
+
+
 
 
