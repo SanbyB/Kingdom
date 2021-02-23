@@ -103,4 +103,3 @@ class Warrior(Troop):
 class Archer(Troop):
     def __init__(self, team, x, y):
         super().__init__(team, 'Archer', (x, y), 50, 4, 300, 10, 14, (2, 2, 0, 0))
-
