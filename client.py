@@ -1,3 +1,6 @@
+import pygame
+import numpy as np
+from network import Network
 import graphics as gr
 
 screen = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
