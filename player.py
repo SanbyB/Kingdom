@@ -121,4 +121,3 @@ players = [Player(1, [],
                   [0, 100, 0, 0], {}), Player(2, [], [Castle(2, (2600, 1600))] + [Lumbermill(2, tree) for tree in
                                                                                   gr.tree_positionsS] + [
                                                   Mine(2, rock) for rock in gr.rock_positionsS], [0, 100, 0, 0], {})]
-
