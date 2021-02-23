@@ -19,12 +19,6 @@ print('waiting for connection, server started')
 
 tb = [players[0].troops, players[1].troops]
 
-'''
-The information needed to be sent is just the troops and buildings of each player,
-not the entire player object, this gives the error that the pygame.surface object cannot be pickled,
-also there is no need to send the buttons info, or the resources info
-'''
-
 
 def theaded_client(conn, player):
     conn.send(pickle.dumps(players[player]))
@@ -32,7 +26,7 @@ def theaded_client(conn, player):
     reply = ''
     while True:
         try:
-            data = pickle.loads(conn.recv(2048 * 4))
+            data = pickle.loads(conn.recv(2048*4))
             players[player] = data
 
             if not data:
