@@ -88,7 +88,3 @@ class Mine(Building):
     def add_iron(self, player):
         if self.level > 2:
             player.resources[2] += (self.level - 1) * 0.01
-
-
-
-
