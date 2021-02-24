@@ -10,14 +10,16 @@ def draw_screen(screen):
     screen.fill((20, 150, 60))
 
 
+
 def img(im):
-    image = pygame.image.load(r'C:\Users\bensa\PycharmProjects\Kingdom\graphics\\' + str(im) + '.png')
+    image = pygame.image.load(str(im) + '.png')
     return image
 
 
 def img_size(im):
-    im_size = Image.open(r'C:\Users\bensa\PycharmProjects\Kingdom\graphics\\' + str(im) + '.png')
+    im_size = Image.open(str(im) + '.png')
     return im_size.size
+
 
 
 def rand_pos():
