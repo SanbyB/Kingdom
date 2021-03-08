@@ -21,3 +21,6 @@ equal to 0 will be removed, the buildings cannot be regenerated once dead.
 The aim is to destroy the opponents castle.
 
 This is not a completed project, but it is playable.
+
+There may be problems with the graphics as they are not generalised to
+different screen sizes but currently tailored to the screen I use.
